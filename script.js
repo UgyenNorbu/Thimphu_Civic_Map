@@ -62,7 +62,7 @@ onSnapshot(pinsQuery, (snapshot) => {
 
 document.getElementById('locate-btn').addEventListener('click', function () {
   // setView requires zoom too, but locate() can auto-zoom based on GPS accuracy
-  map.locate({ setView: true, maxZoom: 16 });
+  map.locate({ setView: true, maxZoom: 20 });
 });
 
 // Fires automatically if locate() succeeds

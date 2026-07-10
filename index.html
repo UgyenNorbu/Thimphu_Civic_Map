@@ -10,7 +10,13 @@
     <body>
         <h1>Thimphu Civic Map</h1>
         <div id="map"></div>
-        <button id="locate-btn">📍 My Location</button>
+        <button id="locate-btn" title="Show my location">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <circle cx="12" cy="12" r="3" fill="#555"/>
+                <path d="M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12"
+          stroke="#555" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script type="module" src="script.js"></script>
     </body>
