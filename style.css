@@ -1,43 +1,76 @@
 body {
-    margin: 0;
-    font-family: sans-serif;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  background-color: #eef2ee;
 }
 
 h1 {
-    text-align: center;
-    margin: 12px 0;
+  text-align: center;
+  margin: 0;
+  padding: 16px 12px;
+  font-size: 32px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  color: #2f4a3d;
+  background-color: #eef2ee;
+  border-bottom: 1px solid #cddccf;
 }
 
+
 #map {
-    height: 80vh;
-    width: 100%;
+  height: calc(100vh - 62px);
+  width: 100%;
 }
 
 #locate-btn {
   position: absolute;
   bottom: 30px;
-  right: 20px;
+  right: 10px;
   z-index: 1000;
 
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   padding: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: #94beee;
-  border: none;
+  background: #ffffff;
+  border: 1px solid #9db8a6;
   border-radius: 50%;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 4px rgba(47, 74, 61, 0.25);
   cursor: pointer;
 }
 
 #locate-btn:hover {
-  background: #4786cd;
+  background: #e2ebe4;
 }
 
 #locate-btn:active {
-  background: #2c609d;
+  background: #cddccf;
+}
+
+#locate-btn svg circle,
+#locate-btn svg path {
+  fill: #3f6b52;
+  stroke: #3f6b52;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 17px;
+    padding: 12px 10px;
+  }
+
+  #map {
+    height: calc(100vh - 48px);
+  }
+
+  #locate-btn {
+    width: 44px;
+    height: 44px;
+    bottom: 16px;
+    right: 12px;
+  }
 }
