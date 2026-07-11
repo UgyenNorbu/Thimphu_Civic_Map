@@ -209,7 +209,8 @@ h1 {
 #info-box h2 {
   margin: 0 0 12px;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 700;
+  text-align: center;
   color: #2f4a3d;
 }
 
@@ -221,14 +222,23 @@ h1 {
 }
 
 #info-box #info-close {
-  margin-top: 6px;
+  display: block;
+  margin: 6px auto 0;
   padding: 8px 14px;
   border-radius: 6px;
   border: 1px solid #9db8a6;
-  background: white;
+  background: #e2ebe4;
   color: #2f4a3d;
   font-size: 14px;
   cursor: pointer;
+}
+
+#info-box #info-close:hover {
+  background: #cddccf;
+}
+
+#info-box #info-close:active {
+  background: #b8c9bc;
 }
 
 @media (max-width: 600px) {
