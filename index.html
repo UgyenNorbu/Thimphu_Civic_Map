@@ -13,6 +13,29 @@
     <body>
         <h1>Thimphu Civic Map</h1>
         <div id="map"></div>
+        
+        <div id="modal-overlay">
+            <div id="modal-box">
+                <h2>Report an issue</h2>
+                <label for="issue-type">Issue type</label>
+                <select id="issue-type">
+                    <option value="pothole">Road/footpath</option>
+                    <option value="streetlight">Water supply</option>
+                    <option value="drainage">Sewage</option>
+                    <option value="manhole">Electricity/lighting</option>
+                    <option value="manhole">Waste management</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="issue-desc">Description</label>
+                <textarea id="issue-desc" rows="3" placeholder="Briefly describe the issue"></textarea>
+
+                <div id="modal-buttons">
+                    <button id="modal-cancel">Cancel</button>
+                    <button id="modal-submit">Submit</button>
+                </div>
+            </div>
+        </div>
         <button id="locate-btn" title="Show my location">
             <svg viewBox="0 0 24 24" width="20" height="20">
                 <circle cx="12" cy="12" r="3" fill="#555"/>

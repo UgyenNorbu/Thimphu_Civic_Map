@@ -23,28 +23,44 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
 }).addTo(map);
 
-map.on("click", async function (e) {
-    const lat = e.latlng.lat;
-    const lng = e.latlng.lng;
+let pendingLatLng = null;
 
-    const description = prompt("Describe the issue (e.g.'Pothole blocking one lane')");
+map.on("click", function (e) {
+  pendingLatLng = e.latlng;
+  document.getElementById("issue-desc").value = "";
+  document.getElementById("issue-type").value = "pothole";
+  document.getElementById("modal-overlay").classList.add("visible");
+});
 
-    if (!description) {
-        return; // exits the function early, skips the rest
-    }
+document.getElementById("modal-cancel").addEventListener("click", function () {
+  document.getElementById("modal-overlay").classList.remove("visible");
+  pendingLatLng = null;
+});
 
-    try {
-        await addDoc(collection(db, "pins"), {
-            lat: lat,
-            lng: lng,
-            description: description,
-            createdAt: new Date().toISOString()
-        });
-        
-        console.log("Pin saved to Firestore!");
-    } catch (error) {
-        console.error("Error saving pin:", error);
-    }    
+document.getElementById("modal-submit").addEventListener("click", async function () {
+  const description = document.getElementById("issue-desc").value.trim();
+  const issueType = document.getElementById("issue-type").value;
+
+  if (!description) {
+    alert("Please add a short description.");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "pins"), {
+      lat: pendingLatLng.lat,
+      lng: pendingLatLng.lng,
+      type: issueType,
+      description: description,
+      createdAt: new Date().toISOString()
+    });
+    console.log("Pin saved to Firestore!");
+  } catch (error) {
+    console.error("Error saving pin:", error);
+  }
+
+  document.getElementById("modal-overlay").classList.remove("visible");
+  pendingLatLng = null;
 });
 
 const pinsQuery = query(collection(db, "pins"));
@@ -54,8 +70,7 @@ onSnapshot(pinsQuery, (snapshot) => {
     if (change.type === "added") {
       const pin = change.doc.data();
       const marker = L.marker([pin.lat, pin.lng]).addTo(map);
-      marker.bindPopup(pin.description);
-      //marker.bindPopup(`Lat: ${pin.lat.toFixed(5)}, Lng: ${pin.lng.toFixed(5)}`);
+      marker.bindPopup(`<strong>${pin.type}</strong><br>${pin.description}`);
     }
   });
 });
