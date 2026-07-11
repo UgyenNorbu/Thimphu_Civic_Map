@@ -19,11 +19,11 @@
                 <h2>Report an issue</h2>
                 <label for="issue-type">Issue type</label>
                 <select id="issue-type">
-                    <option value="pothole">Road/footpath</option>
-                    <option value="streetlight">Water supply</option>
-                    <option value="drainage">Sewage</option>
-                    <option value="manhole">Electricity/lighting</option>
-                    <option value="manhole">Waste management</option>
+                    <option value="road/footpath">Road/footpath</option>
+                    <option value="watersupply">Water supply</option>
+                    <option value="sewage">Sewage</option>
+                    <option value="electricity/lighting">Electricity/lighting</option>
+                    <option value="wastemanagement">Waste management</option>
                     <option value="other">Other</option>
                 </select>
 
@@ -43,6 +43,24 @@
           stroke="#555" stroke-width="2" stroke-linecap="round"/>
             </svg>
         </button>
+
+        <button id="info-btn" title="About this map">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="#3f6b52" stroke-width="2"/>
+                <line x1="12" y1="11" x2="12" y2="17" stroke="#3f6b52" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="7.5" r="1.2" fill="#3f6b52"/>
+            </svg>
+        </button>
+
+        <div id="info-overlay">
+            <div id="info-box">
+                <h2>About this map</h2>
+                <p>Thimphu Civic Issue Map is an independent, public demo project that is not affiliated with the Thimphu Thromde or any government agency. It is not intended to be used for any official purpose.</p>
+                <p>Anyone can drop a pin to report an infrastructure issue. Pins are visible to all visitors and, once submitted, cannot be edited or removed.</p>
+                <button id="info-close">Close</button>
+            </div>
+        </div>
+
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script type="module" src="script.js"></script>
     </body>

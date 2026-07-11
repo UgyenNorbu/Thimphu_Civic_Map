@@ -23,12 +23,20 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
 }).addTo(map);
 
+document.getElementById("info-btn").addEventListener("click", function () {
+  document.getElementById("info-overlay").classList.add("visible");
+});
+
+document.getElementById("info-close").addEventListener("click", function () {
+  document.getElementById("info-overlay").classList.remove("visible");
+});
+
 let pendingLatLng = null;
 
 map.on("click", function (e) {
   pendingLatLng = e.latlng;
   document.getElementById("issue-desc").value = "";
-  document.getElementById("issue-type").value = "pothole";
+  document.getElementById("issue-type").value = "road/footpath";
   document.getElementById("modal-overlay").classList.add("visible");
 });
 
