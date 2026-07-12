@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
+import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -55,12 +54,13 @@ document.getElementById("modal-submit").addEventListener("click", async function
   }
 
   try {
+    console.log("Attempting to save:", pendingLatLng.lat, pendingLatLng.lng, issueType, description);   // <-- ADD THIS LINE HERE
     await addDoc(collection(db, "pins"), {
       lat: pendingLatLng.lat,
       lng: pendingLatLng.lng,
       type: issueType,
       description: description,
-      createdAt: new Date().toISOString()
+      createdAt: serverTimestamp()
     });
     console.log("Pin saved to Firestore!");
   } catch (error) {
