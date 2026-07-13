@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const map = L.map("map").setView([27.45, 89.63], 13);
+const map = L.map("map").setView([27.45, 89.63], 12);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; OpenStreetMap contributors',
@@ -54,7 +54,6 @@ document.getElementById("modal-submit").addEventListener("click", async function
   }
 
   try {
-    console.log("Attempting to save:", pendingLatLng.lat, pendingLatLng.lng, issueType, description);   // <-- ADD THIS LINE HERE
     await addDoc(collection(db, "pins"), {
       lat: pendingLatLng.lat,
       lng: pendingLatLng.lng,
